@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 
 import { getPokemonById } from '@/services';
 
+//Hola
+
 interface Props {
   params: { id: string };
 }
@@ -11,9 +13,7 @@ interface Props {
 //Le tengo que pasar o generar el argumento que recibe mi page en este caso el id para que pueda
 //generar las paginas en build time
 export async function generateStaticParams() {
-  const staticPokemons = Array.from({ length: 151 }).map(
-    (value, i) => `${i + 1}`
-  );
+  const staticPokemons = Array.from({ length: 151 }).map((value, i) => `${i + 1}`);
 
   return staticPokemons.map((id) => ({
     id,
@@ -74,46 +74,24 @@ export default async function PokemonPage({ params }: Props) {
 
           <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4  drop-shadow-lg ">
             <p className="text-sm text-gray-600">Peso</p>
-            <span className="text-base font-medium text-navy-700 flex">
-              {pokemon.weight}
-            </span>
+            <span className="text-base font-medium text-navy-700 flex">{pokemon.weight}</span>
           </div>
 
           <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4  drop-shadow-lg">
             <p className="text-sm text-gray-600">Regular Sprites</p>
             <div className="flex justify-center">
-              <Image
-                src={pokemon.sprites.front_default}
-                width={100}
-                height={100}
-                alt={`sprite ${pokemon.name}`}
-              />
+              <Image src={pokemon.sprites.front_default} width={100} height={100} alt={`sprite ${pokemon.name}`} />
 
-              <Image
-                src={pokemon.sprites.back_default}
-                width={100}
-                height={100}
-                alt={`sprite ${pokemon.name}`}
-              />
+              <Image src={pokemon.sprites.back_default} width={100} height={100} alt={`sprite ${pokemon.name}`} />
             </div>
           </div>
 
           <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4  drop-shadow-lg">
             <p className="text-sm text-gray-600">Shiny Sprites</p>
             <div className="flex justify-center">
-              <Image
-                src={pokemon.sprites.front_shiny}
-                width={100}
-                height={100}
-                alt={`sprite ${pokemon.name}`}
-              />
+              <Image src={pokemon.sprites.front_shiny} width={100} height={100} alt={`sprite ${pokemon.name}`} />
 
-              <Image
-                src={pokemon.sprites.back_shiny}
-                width={100}
-                height={100}
-                alt={`sprite ${pokemon.name}`}
-              />
+              <Image src={pokemon.sprites.back_shiny} width={100} height={100} alt={`sprite ${pokemon.name}`} />
             </div>
           </div>
         </div>
