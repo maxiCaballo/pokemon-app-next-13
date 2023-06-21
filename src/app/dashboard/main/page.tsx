@@ -1,7 +1,23 @@
+import { SimpleWidget } from '@/components';
+
+export const metadata = {
+  title: 'Admin dashboard',
+  description: 'SEO Title',
+};
+
 export default function MainPage() {
-	return (
-		<div>
-			<h1>Hello Page Main</h1>
-		</div>
-	);
+  return (
+    <div className="text-black">
+      <h1 className="mt-2 text-3xl">Dashboard</h1>
+      <span className="text-xl">General information</span>
+
+      <div className="flex flex-wrap p-2">
+        <SimpleWidget />
+        <SimpleWidget />
+        <SimpleWidget />
+        <SimpleWidget />
+        <SimpleWidget />
+      </div>
+    </div>
+  );
 }

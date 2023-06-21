@@ -1,39 +1,35 @@
 'use client';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { addOne, substractOne } from '@/store/counter/counterSlice';
+// import { Dispatch, SetStateAction, useState } from 'react';
+
+interface PageProps {
+  value?: number;
+}
 
 interface ButtonProps {
-	text: string;
-	type: buttonPropsType;
-	handleClick: Dispatch<SetStateAction<number>>;
+  text: string;
+  handleClick: () => void;
 }
-type buttonPropsType = 'add' | 'substract';
-
-const Button = ({ text, type, handleClick }: ButtonProps) => (
-	<button
-		className="className='flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px] mr-2"
-		onClick={() =>
-			handleClick((prev) => {
-				if (type === 'add') {
-					return prev + 1;
-				} else {
-					return Math.max(0, prev - 1);
-				}
-			})
-		}
-	>
-		{text}
-	</button>
+const Button = ({ text, handleClick }: ButtonProps) => (
+  <button
+    className="className='flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px] mr-2"
+    onClick={() => handleClick()}
+  >
+    {text}
+  </button>
 );
 
-export const CartCounter = () => {
-	const [counter, setCounter] = useState(0);
-	return (
-		<>
-			<span className='text-9xl'>{counter}</span>
-			<div>
-				<Button text='+ 1' type='add' handleClick={setCounter} />
-				<Button text='- 1' type='substract' handleClick={setCounter} />
-			</div>
-		</>
-	);
+export const CartCounter = ({ value = 0 }: PageProps) => {
+  const count = useAppSelector((state) => state.count.counter);
+  const dispatch = useAppDispatch();
+  return (
+    <>
+      <span className="text-9xl">{count}</span>
+      <div>
+        <Button text="+ 1" handleClick={() => dispatch(addOne())} />
+        <Button text="- 1" handleClick={() => dispatch(substractOne())} />
+      </div>
+    </>
+  );
 };
