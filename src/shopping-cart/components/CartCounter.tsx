@@ -1,7 +1,7 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addOne, substractOne } from '@/store/counter/counterSlice';
-// import { Dispatch, SetStateAction, useState } from 'react';
+import { addOne, resetCounter, initCounterState, substractOne } from '@/store/counter/counterSlice';
+import { useEffect } from 'react';
 
 interface PageProps {
   value?: number;
@@ -23,6 +23,11 @@ const Button = ({ text, handleClick }: ButtonProps) => (
 export const CartCounter = ({ value = 0 }: PageProps) => {
   const count = useAppSelector((state) => state.count.counter);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(initCounterState(value));
+  }, [dispatch, value]);
+
   return (
     <>
       <span className="text-9xl">{count}</span>
