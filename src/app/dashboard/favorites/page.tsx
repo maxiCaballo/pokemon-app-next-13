@@ -1,4 +1,9 @@
-import { PokemonGrid } from '@/components';
+import { FavoritesPokemons } from '@/components';
+
+export const metadata = {
+  title: 'Favorites pokemons',
+  description: 'Page of my favorites pokemons',
+};
 
 export default async function PokemonsPage() {
   return (
@@ -6,7 +11,7 @@ export default async function PokemonsPage() {
       <div className="text-5xl my-5">
         Favorites Pokemon list <small className="text-blue-500">Redux</small>
       </div>
-      <PokemonGrid pokemons={[]} />
+      <FavoritesPokemons />
     </div>
   );
 }
